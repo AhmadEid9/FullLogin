@@ -1,6 +1,6 @@
 pages = {}
 
-pages.postAPI = async (url) =>{
+pages.postAPI = async (url, data) =>{
     try{
         return await fetch(url, {
             method: "post",
@@ -8,11 +8,7 @@ pages.postAPI = async (url) =>{
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                name: username,
-                password: user_password,
-                email: user_mail
-              })
+            body: JSON.stringify(data)
         })
     }catch(error){
         console.log(error);

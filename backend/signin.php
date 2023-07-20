@@ -4,7 +4,7 @@ include('connection.php');
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$query = $mysqli->prepare('select id,username,password,first_name,last_name
+$query = $mysqli->prepare('select id,username,password
 from users 
 where username=?');
 $query->bind_param('s', $username);
