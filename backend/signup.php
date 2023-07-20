@@ -6,10 +6,8 @@ $username = $_POST['username'];
 // $username=chris
 // $password=chris1234
 $password = $_POST['password'];
-$first_name = $_POST['first_name'];
-$last_name = $_POST['last_name'];
 
-$check_username = $mysqli->prepare('select username from users where username=?');
+$check_username = $mysqli->prepare('select user_name from users where user_name=?');
 $check_username->bind_param('s', $username);
 $check_username->execute();
 $check_username->store_result();
@@ -17,8 +15,8 @@ $username_exists = $check_username->num_rows();
 
 if ($username_exists == 0) {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    $query = $mysqli->prepare('insert into users(username,password,first_name,last_name) values(?,?,?,?)');
-    $query->bind_param('ssss', $username, $hashed_password, $first_name, $last_name);
+    $query = $mysqli->prepare('insert into users(user_name,user_password) values(?,?)');
+    $query->bind_param('ss', $username, $hashed_password);
     $query->execute();
 
     $response['status'] = "success";
