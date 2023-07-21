@@ -27,7 +27,7 @@ pages = {}
 pages.postAPI = async (url, data) =>{
     try{
         return await fetch(url, {
-            method: "post",
+            method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
